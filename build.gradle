@@ -1,0 +1,7 @@
+buildscript {
+    ext {
+        versions = [
+                fbVersion: '3.0.1',
+        ]
+    }
+}

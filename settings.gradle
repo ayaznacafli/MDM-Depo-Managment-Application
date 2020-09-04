@@ -1,0 +1,3 @@
+rootProject.name = 'MDM Microservices'
+
+include ':mdm-depo-ms'

@@ -1,0 +1,53 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.6.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+}
+
+group = 'az.mdm.depo'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.3.1.RELEASE'
+// https://mvnrepository.com/artifact/org.springframework.security.oauth.boot/spring-security-oauth2-autoconfigure
+    compile group: 'org.springframework.security.oauth.boot', name: 'spring-security-oauth2-autoconfigure', version: '2.3.1.RELEASE'
+    // https://mvnrepository.com/artifact/org.passay/passay
+    compile group: 'org.passay', name: 'passay', version: '1.6.0'
+    // https://mvnrepository.com/artifact/org.springframework.security/spring-security-crypto
+    compile group: 'org.springframework.security', name: 'spring-security-crypto', version: '5.3.4.RELEASE'
+    // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
+    compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+    // https://mvnrepository.com/artifact/org.springframework.security/spring-security-test
+    testCompile group: 'org.springframework.security', name: 'spring-security-test', version: '5.3.4.RELEASE'
+
+
+
+
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation("org.springframework.boot:spring-boot-starter-web")
+
+    runtimeOnly 'mysql:mysql-connector-java'
+    runtime('com.h2database:h2')
+
+    implementation("org.modelmapper:modelmapper:2.3.7")
+
+    annotationProcessor 'org.projectlombok:lombok:1.18.8'
+    implementation("org.projectlombok:lombok:1.18.8")
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    testImplementation("junit:junit")
+
+    compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+    implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+}
+
+test {
+    useJUnitPlatform()
+}
