@@ -12,6 +12,8 @@ import java.time.LocalDateTime;
 public class Instrument {
 
     @Id
+//    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "instrument_Sequence")
+//    @SequenceGenerator(name = "instrument_Sequence", sequenceName = "INSTRUMENT_SEQ")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;

@@ -5,17 +5,17 @@ spring:
       ddl-auto: validate
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.Oracle11gDialect
+        dialect: org.hibernate.dialect.MySQL5Dialect
       javax:
         persistence:
           query:
             timeout: 600000
     open-in-view: true
   datasource:
-    url: jdbc:oracle:thin:@cdb.cmis.az:1521:GDBCSCP1
+    url: jdbc:mysql://localhost:3306/depo?createDatabaseIfNotExist=true&useSSL=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=UTF-8
     username: root
     password: ayaz1997
-    driver-class-name: oracle.jdbc.OracleDriver
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
 
 
@@ -24,4 +24,3 @@ server:
   port: 8080
   servlet:
     context-path: /api/mdm
-  address: 192.168.250.89

@@ -1,5 +1,6 @@
 package az.mdm.depo.controller;
 
+import az.mdm.depo.dto.ExpenditureListDTO;
 import az.mdm.depo.dto.InstrumentDTO;
 import az.mdm.depo.service.InstrumentService;
 import lombok.RequiredArgsConstructor;
@@ -51,6 +52,18 @@ public class InstrumentController {
     @PutMapping("/update")
     public void updateInstrument(@RequestBody @Valid InstrumentDTO dto){
         service.updateInstrument(dto);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/incomelist")
+    private String inComeList(@RequestBody @Valid List<InstrumentDTO> dtos) {
+        return service.inComeList(dtos);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/expenditurelist")
+    public void expenditureList(@RequestBody @Valid List<ExpenditureListDTO> dtos) {
+        service.expenditureList(dtos);
     }
 
 }

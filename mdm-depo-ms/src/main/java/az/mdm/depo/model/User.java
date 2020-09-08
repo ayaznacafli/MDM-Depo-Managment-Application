@@ -19,7 +19,10 @@ import java.util.Set;
                 @UniqueConstraint(columnNames = "email")
         })
 public class User {
+
     @Id
+//    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "user_Sequence")
+//    @SequenceGenerator(name = "user_Sequence", sequenceName = "USER_SEQ")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

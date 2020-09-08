@@ -8,13 +8,13 @@ services:
       MYSQL_ROOT_PASSWORD: ayaz1997
     ports:
       - 3306:3306
-  ms-depo:
-    image: ms-depo:0.2
-    environment:
-      DB_CONNECTION_ADDR: mysql
-    ports:
-      - 8080:8080
-    depends_on:
-      - mysql
+#  ms-depo:
+#    image: ms-depo:0.2
+#    environment:
+#      DB_CONNECTION_ADDR: mysql
+#    ports:
+#      - 8080:8080
+#    depends_on:
+#      - mysql
 volumes:
   mdm-csdr-mas-app_db_data:

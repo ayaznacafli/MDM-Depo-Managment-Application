@@ -1,13 +1,10 @@
 package az.mdm.depo.service.impl;
 
-import az.mdm.depo.dto.RoleDTO;
 import az.mdm.depo.dto.UserDTO;
-import az.mdm.depo.handler.RoleNotFoundException;
 import az.mdm.depo.model.ERole;
 import az.mdm.depo.model.Role;
 import az.mdm.depo.model.User;
 import az.mdm.depo.payload.request.LoginRequest;
-import az.mdm.depo.payload.request.SignupRequest;
 import az.mdm.depo.payload.response.JwtResponse;
 import az.mdm.depo.payload.response.MessageResponse;
 import az.mdm.depo.repository.RoleRepository;
@@ -16,7 +13,6 @@ import az.mdm.depo.security.jwt.JwtUtils;
 import az.mdm.depo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

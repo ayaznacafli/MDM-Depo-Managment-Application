@@ -12,6 +12,8 @@ import java.util.Set;
 public class Category {
 
     @Id
+//    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "category_Sequence")
+//    @SequenceGenerator(name = "category_Sequence", sequenceName = "CATEGORY_SEQ")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;

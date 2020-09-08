@@ -12,6 +12,8 @@ import java.util.Set;
 public class Quantity {
 
     @Id
+//    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "quantity_Sequence")
+//    @SequenceGenerator(name = "quantity_Sequence", sequenceName = "QUANTITY_SEQ")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;

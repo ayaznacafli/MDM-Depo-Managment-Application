@@ -1,10 +1,12 @@
 package az.mdm.depo.service.impl;
 
 import az.mdm.depo.dto.CategoryDTO;
+import az.mdm.depo.dto.ExpenditureListDTO;
 import az.mdm.depo.dto.InstrumentDTO;
 import az.mdm.depo.dto.QuantityDTO;
 import az.mdm.depo.handler.CategoryNotFoundException;
 import az.mdm.depo.handler.InstrumentNotFoundException;
+import az.mdm.depo.handler.QuantityNotFoundException;
 import az.mdm.depo.model.Category;
 import az.mdm.depo.model.Instrument;
 import az.mdm.depo.model.Quantity;
@@ -45,6 +47,21 @@ public class InstrumentServiceImpl implements InstrumentService {
             instrument.setIncomeDate(LocalDateTime.now());
         }
         return instrumentRepository.save(instrument).getId();
+    }
+
+    @Override
+    public String inComeList(List<InstrumentDTO> dtos) {
+       List<Instrument> instruments = dtos.stream().map(dto -> {
+           Instrument instrument = modelMapper.map(dto,Instrument.class);
+           if (dto.getQuantity() != null && dto.getCategory() != null) {
+               instrument.setQuantity(modelMapper.map(dto.getQuantity(),Quantity.class));
+               instrument.setCategory(modelMapper.map(dto.getCategory(),Category.class));
+           } else
+               throw new InstrumentNotFoundException();
+           return instrument;
+       }).collect(Collectors.toList());
+             instrumentRepository.saveAll(instruments);
+             return "Successful";
     }
 
     @Override
@@ -91,11 +108,28 @@ public class InstrumentServiceImpl implements InstrumentService {
 
     @Override
     public void expenditure(Long instrumentId, Long count) {
-        Instrument instrument = getInstrument(instrumentId);
-        if(instrument != null) {
+        if(instrumentId != null && count != null) {
+            Instrument instrument = getInstrument(instrumentId);
             instrument.setExpenditureDate(LocalDateTime.now());
-            instrument.setFullAmount(checkFullAmount(instrument.getCount()-count,instrument.getOneAmount()));
+            instrument.setCount(instrument.getCount()-count);
+            instrument.setFullAmount(checkFullAmount(instrument.getCount(),instrument.getOneAmount()));
         }
+    }
+
+    @Override
+    public String expenditureList(List<ExpenditureListDTO> dtos) {
+         dtos.stream().forEach(dto -> {
+             if(dto.getCount() != null && dto.getInstrumentId() != null) {
+                 Instrument instrument = getInstrument(dto.getInstrumentId());
+                 if(instrument.getCount()>=dto.getCount()){
+                     instrument.setExpenditureDate(LocalDateTime.now());
+                     instrument.setCount(instrument.getCount()-dto.getCount());
+                     instrument.setFullAmount(checkFullAmount(instrument.getCount(),instrument.getOneAmount()));
+                     instrumentRepository.save(instrument);
+                 }
+             }
+         });
+         return null;
     }
 
     private Double checkFullAmount(Long count, Double amount) {

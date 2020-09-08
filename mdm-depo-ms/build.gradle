@@ -14,24 +14,24 @@ repositories {
 }
 
 dependencies {
-    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
+
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.3.1.RELEASE'
-    // https://mvnrepository.com/artifact/org.springframework.security.oauth.boot/spring-security-oauth2-autoconfigure
     compile group: 'org.springframework.security.oauth.boot', name: 'spring-security-oauth2-autoconfigure', version: '2.3.1.RELEASE'
-    // https://mvnrepository.com/artifact/org.passay/passay
     compile group: 'org.passay', name: 'passay', version: '1.6.0'
-    // https://mvnrepository.com/artifact/org.springframework.security/spring-security-crypto
     compile group: 'org.springframework.security', name: 'spring-security-crypto', version: '5.3.4.RELEASE'
-    // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
     compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
-    // https://mvnrepository.com/artifact/org.springframework.security/spring-security-test
     testCompile group: 'org.springframework.security', name: 'spring-security-test', version: '5.3.4.RELEASE'
+
+    compile group: 'org.springframework.security', name: 'spring-security-web', version: '5.3.4.RELEASE'
 
     implementation 'com.oracle.database.jdbc:ojdbc8:19.6.0.0'
     implementation 'com.oracle.database.jdbc:ucp:19.6.0.0'
-
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation("org.springframework.boot:spring-boot-starter-web")
+
+    runtimeOnly 'mysql:mysql-connector-java'
+    runtime('com.h2database:h2')
+
 
 
     implementation("org.modelmapper:modelmapper:2.3.7")
