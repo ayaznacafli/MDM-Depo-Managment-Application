@@ -35,19 +35,19 @@ public class InstrumentController {
         service.expenditure(instrumentId,count);
     }
 
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
     @GetMapping("/instruments")
     public List<InstrumentDTO> getInstrument() {
         return service.getInstruments();
     }
 
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
     @GetMapping("/instrumentsbycategory")
     public List<InstrumentDTO> getInstrumentByCategory(Long categoryId) {
         return service.getInstrumentsByCategory(categoryId);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/update")
     public void updateInstrument(@RequestBody @Valid InstrumentDTO dto){
         service.updateInstrument(dto);

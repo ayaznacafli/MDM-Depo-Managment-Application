@@ -18,7 +18,7 @@ public class QuantityController {
 
     private final QuantityService quantityService;
 
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
     @GetMapping("/quantitys")
     public List<QuantityDTO> getQuantityList() {
         return quantityService.getQuantitys();

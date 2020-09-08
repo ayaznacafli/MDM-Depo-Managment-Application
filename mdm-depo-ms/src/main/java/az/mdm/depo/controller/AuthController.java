@@ -57,14 +57,21 @@ public class AuthController {
         return userService.registrationUser(userDTO);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/roles")
     public List<RoleDTO> getRoles() {
         return roleService.getRoles();
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/users")
     public List<User> getUsers() {
         return userRepository.findAll();
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/user")
+    public User getUser() {
+        return userRepository.findByUsername("ayaznacafli").get();
     }
 }

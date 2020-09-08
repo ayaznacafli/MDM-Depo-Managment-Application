@@ -15,6 +15,7 @@ import az.mdm.depo.repository.UserRepository;
 import az.mdm.depo.security.jwt.JwtUtils;
 import az.mdm.depo.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -42,6 +43,8 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     private final RoleRepository roleRepository;
+
+    private final ModelMapper modelMapper;
 
 
     @Override
@@ -79,34 +82,33 @@ public class UserServiceImpl implements UserService {
                     .body(new MessageResponse("Error: Email is already in use!"));
         }
 
+        // Create new user's account
         User user = new User(dto.getUsername(),
                 dto.getEmail(),
                 encoder.encode(dto.getPassword()));
 
-        List<RoleDTO> strRoles = dto.getRole();
-
+        Set<String> strRoles = dto.getRole();
         Set<Role> roles = new HashSet<>();
 
         if (strRoles == null) {
-            Role userRole = roleRepository.findByName(ERole.USER)
-                    .orElseThrow(() -> new RoleNotFoundException(ERole.USER.name()));
+            Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
             roles.add(userRole);
         } else {
             strRoles.forEach(role -> {
-                switch (role.getName()) {
-                    case "ADMIN":
-                        Role adminRole = roleRepository.findByName(ERole.ADMIN)
-                                .orElseThrow(() -> new RoleNotFoundException(ERole.ADMIN.name()));
+                switch (role) {
+                    case "admin":
+                        Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(adminRole);
 
                         break;
-                    case "USER":
-                        Role modRole = roleRepository.findByName(ERole.USER)
-                                .orElseThrow(() -> new RoleNotFoundException(ERole.USER.name()));
+                    case "user":
+                        Role modRole = roleRepository.findByName(ERole.ROLE_USER)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(modRole);
+
                         break;
-                    default:
-                       break;
                 }
             });
         }
@@ -116,4 +118,5 @@ public class UserServiceImpl implements UserService {
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
+
 }

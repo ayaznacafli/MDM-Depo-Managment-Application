@@ -5,9 +5,11 @@ import lombok.Data;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
+@ToString(exclude = "users")
 @Entity
 @Table(name = "roles")
 public class Role {
@@ -19,5 +21,6 @@ public class Role {
     @Enumerated(EnumType.STRING)
     @Column(length = 20)
     private ERole name;
+
 
 }

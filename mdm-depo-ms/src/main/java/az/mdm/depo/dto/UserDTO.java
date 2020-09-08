@@ -9,6 +9,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @PasswordMatches
@@ -25,7 +26,7 @@ public class UserDTO {
     @Email
     private String email;
 
-    private List<RoleDTO> role;
+    private Set<String> role;
 
     @NotBlank
     @Size(min = 4, max = 40,message = "Password's size must be between 4 and 50")
@@ -35,5 +36,9 @@ public class UserDTO {
     @Transient
     private String matchingPassword;
 
+
+    void addRole(String dto) {
+        this.role.add(dto);
+    }
 
 }

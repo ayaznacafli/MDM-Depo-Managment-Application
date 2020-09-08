@@ -1,6 +1,7 @@
 package az.mdm.depo.security.jwt;
 
 
+
 import java.io.IOException;
 
 import javax.servlet.FilterChain;
@@ -18,7 +19,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
-
 
 public class AuthTokenFilter extends OncePerRequestFilter {
     @Autowired
@@ -51,7 +51,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
- /*   private String parseJwt(HttpServletRequest request) {
+    private String parseJwt(HttpServletRequest request) {
         String headerAuth = request.getHeader("Authorization");
 
         if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
@@ -59,14 +59,6 @@ public class AuthTokenFilter extends OncePerRequestFilter {
         }
 
         return null;
-    }*/
-    private String parseJwt(HttpServletRequest request) {
-        String headerAuth = request.getHeader("Authorization");
-
-        if (StringUtils.hasText(headerAuth)) {
-            return headerAuth;
-        }
-
-        return null;
     }
+
 }
