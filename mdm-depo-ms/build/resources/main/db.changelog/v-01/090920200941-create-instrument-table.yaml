@@ -1,0 +1,43 @@
+databaseChangeLog:
+  - changeSet:
+      id: 090920200941
+      author: ayaznacafli
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: student_pkey
+                  name: ID
+                  type: NUMBER
+              - column:
+                  name: COUNT
+                  type: NUMBER
+              - column:
+                  name: EXPENDITURE_DATE
+                  type: TIMESTAMP
+              - column:
+                  name: FULL_AMOUNT
+                  type: FLOAT(24)
+              - column:
+                  name: INCOME_DATE
+                  type: TIMESTAMP
+              - column:
+                  name: NAME
+                  type: VARCHAR(255)
+              - column:
+                  name: ONE_AMOUNT
+                  type: FLOAT(24)
+              - column:
+                  name: UPDATE_DATE
+                  type: TIMESTAMP
+              - column:
+                  name: CATEGORY_ID
+                  type: NUMBER
+              - column:
+                  name: QUANTITY_ID
+                  type: NUMBER
+
+            tableName: INSTRUMENT

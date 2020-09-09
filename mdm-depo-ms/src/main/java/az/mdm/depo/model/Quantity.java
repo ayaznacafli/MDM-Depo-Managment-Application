@@ -12,9 +12,7 @@ import java.util.Set;
 public class Quantity {
 
     @Id
-//    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "quantity_Sequence")
-//    @SequenceGenerator(name = "quantity_Sequence", sequenceName = "QUANTITY_SEQ")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.AUTO, generator = "quantity_Sequence")
     private Long id;
     private String name;
 

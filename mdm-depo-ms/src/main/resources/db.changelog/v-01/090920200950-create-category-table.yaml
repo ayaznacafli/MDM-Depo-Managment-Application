@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20200725
+      author: iyusubov
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: student_pkey
+                  name: ID
+                  type: NUMBER
+              - column:
+                  name: NAME
+                  type: VARCHAR(255)
+              - column:
+                  name: last_name
+                  type: VARCHAR(255)
+              - column:
+                  name: age
+                  type: int4
+              - column:
+                  name: student_address
+                  type: bigint
+            tableName: students

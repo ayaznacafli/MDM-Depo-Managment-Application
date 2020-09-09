@@ -3,21 +3,20 @@ package az.mdm.depo.model;
 
 import lombok.Data;
 import lombok.ToString;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.io.Serializable;
 
 @Data
 @ToString(exclude = "users")
 @Entity
 @Table(name = "roles")
-public class Role {
+@SequenceGenerator(name="seq", initialValue=1, allocationSize=100)
+public class Role implements Serializable {
 
     @Id
-//    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "role_Sequence")
-//    @SequenceGenerator(name = "role_Sequence", sequenceName = "ROLE_SEQ")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.AUTO, generator = "role_Sequence")
     private Long id;
 
     @Enumerated(EnumType.STRING)

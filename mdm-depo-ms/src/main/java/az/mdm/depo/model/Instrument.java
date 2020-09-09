@@ -12,9 +12,7 @@ import java.time.LocalDateTime;
 public class Instrument {
 
     @Id
-//    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "instrument_Sequence")
-//    @SequenceGenerator(name = "instrument_Sequence", sequenceName = "INSTRUMENT_SEQ")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.AUTO, generator = "instrument_Sequence")
     private Long id;
     private String name;
     private Long count;
